@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `Days`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Days` (
-  `Symbol` char(5) NOT NULL,
+  `Symbol` char(6) NOT NULL,
   `Date` date NOT NULL,
   `Open` decimal(10,2) unsigned NOT NULL,
   `High` decimal(10,2) unsigned NOT NULL,
@@ -43,7 +43,7 @@ DROP TABLE IF EXISTS `Names`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Names` (
-  `Symbol` char(5) NOT NULL,
+  `Symbol` char(6) NOT NULL,
   `Description` varchar(255) NOT NULL,
   `Exchange` char(6) NOT NULL,
   PRIMARY KEY (`Symbol`)
