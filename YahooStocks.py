@@ -86,11 +86,6 @@ def processStocks(q, qo, startdate):
         inserted_rows = 0
         #print 'Start to deal with: %s' % symbol
 
-        #ignore stocks with a '.' in the symbol
-        if '.' in symbol:
-            #print '%s: skipped' % symbol
-            continue
-
         # get last date for this symbol
         stock_count = stock_count + 1
         #print '%s: searching for last trading days in Database ...' % symbol
@@ -114,6 +109,9 @@ def processStocks(q, qo, startdate):
 
         print "%s: downloading from %s to %s " % (symbol, nextday, today)
         data = get_historical_prices(symbol, nextday, today)
+
+
+        # Insert data into database
         try:
             #get column names
             (name_date,name_o,name_h,name_l,name_c,name_vol,name_adj_close) \
@@ -138,7 +136,7 @@ def processStocks(q, qo, startdate):
                     updated_stocks = updated_stocks + 1
                     print '%s:%s Adj Close Changed! All data has to be updated'\
                             % (symbol, date)
-                    raise Exception("All %s data have to be updated" % symbol)
+                    raise Exception("All %s data has to be updated" % symbol)
                 cmd_i += ' ("%s", "%s", %.2f, %.2f, %.2f, %.2f, %d, %.2f),'\
                         % (symbol,date, float(o), float(h), float(l),
                                 float(c), int(vol), float(adj_close))
@@ -175,7 +173,7 @@ def main():
 
     q = Queue(8000)
 
-    #symbollist = [('LL',)]
+    #symbollist = [('ABB.ST',)]
     #symbollist = [('AAPL',),('LL',),('MLNX',)]
 
     #count = 0
