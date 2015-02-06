@@ -160,7 +160,8 @@ def processStocks(q, qo, startdate):
 
 def main():
     global password
-    password = getpass.getpass('password:')
+    if len(password) == 0:
+        password = getpass.getpass('password:')
     starttime = datetime.datetime.now()
 
     cn = MySQLdb.connect(user = dbuser, db = database, passwd = password)
